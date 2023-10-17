@@ -1,5 +1,20 @@
 package com.example.category;
 
-public class CategoryRepository {
+import java.util.List;
 
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+
+import com.example.entity.Category;
+
+public interface CategoryRepository extends JpaRepository<Category, Long> {
+	
+	/**
+	 * カテゴリー情報検索クエリ
+	 * 
+	 * @param keyword 検索キーワード
+	 * @return ブランド情報のリスト
+	 */
+	@Query("SELECT c FROM Category c WHERE c.name LIKE %?1%")
+	public List<Category> search(String keyword);
 }
