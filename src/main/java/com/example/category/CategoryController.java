@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -68,5 +69,33 @@ public class CategoryController {
 		// 登録成功のメッセージを格納
 		ra.addFlashAttribute("success_message", "登録に成功しました");
 		return "redirect:/categories";
+	}
+	
+	/**
+	 * カテゴリー詳細画面表示
+	 * 
+	 * @param id カテゴリーID
+	 * @param model
+	 * @return カテゴリー詳細画面
+	 */
+	@GetMapping("/detail/{id}")
+	public String detailCategory(@PathVariable(name = "id")Long id, Model model) {
+		Category category = categoryService.get(id);
+		model.addAttribute("category", category);
+		return "categories/category_detail";
+	}
+	/**
+	 * カテゴリー編集仮面表示
+	 * 
+	 * @param id カテゴリーID 
+	 * @param model
+	 * @return カテゴリー編集画面
+	 */
+	@GetMapping("/edit/{id}")
+	public String editCategory(@PathVariable(name = "id") Long id, Model model) {
+		// ブランドIDに紐づくブランド情報取得
+		Category category = categoryService.get(id);
+		model.addAttribute("category", category);
+		return "categories/catefory_edit";
 	}
 }
