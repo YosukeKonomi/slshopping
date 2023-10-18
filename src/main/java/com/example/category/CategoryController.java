@@ -51,7 +51,7 @@ public class CategoryController {
 		// 新規登録用に、空のカテゴリー情報作成
 		Category category = new Category();
 		model.addAttribute("category", category);
-		return "category/category_form";
+		return "categories/category_form";
 	}
 	
 	/**
