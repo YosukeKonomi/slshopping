@@ -33,4 +33,14 @@ public class CategoryService {
 			return categoryRepository.findAll();
 		}
 	}
+	
+	/**
+	 * カテゴリー情報登録処理
+	 * 
+	 * @param category 保存したいカテゴリー情報
+	 * @return 保存したカテゴリー情報
+	 */
+	public Category save(Category category) {
+		return categoryRepository.save(category);
+	}
 }
