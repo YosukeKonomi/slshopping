@@ -43,4 +43,14 @@ public class CategoryService {
 	public Category save(Category category) {
 		return categoryRepository.save(category);
 	}
+	
+	/**
+	 * IDに紐づくカテゴリー情報取得処理
+	 * 
+	 * @param id カテゴリーID
+	 * @return カテゴリー情報
+	 */
+	public Category get(Long id) {
+		return categoryRepository.findById(id).get();
+	}
 }
