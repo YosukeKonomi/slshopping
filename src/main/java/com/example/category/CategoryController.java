@@ -80,6 +80,7 @@ public class CategoryController {
 	 */
 	@GetMapping("/detail/{id}")
 	public String detailCategory(@PathVariable(name = "id")Long id, Model model) {
+		// カテゴリーIDに紐づくカテゴリー情報取得
 		Category category = categoryService.get(id);
 		model.addAttribute("category", category);
 		return "categories/category_detail";
@@ -97,5 +98,22 @@ public class CategoryController {
 		Category category = categoryService.get(id);
 		model.addAttribute("category", category);
 		return "categories/catefory_edit";
+	}
+	
+	/**
+	 * カテゴリー削除処理
+	 * 
+	 * @param id カテゴリーID
+	 * @param model
+	 * @param ra
+	 * @return カテゴリー一覧画面
+	 */
+	@GetMapping("/delete/{id}")
+	public String deleteCategory(@PathVariable(name = "id") Long id, Model model, RedirectAttributes ra) {
+		// カテゴリー情報削除
+		categoryService.delete(id);
+		// 削除成功のメッセージを格納
+		ra.addFlashAttribute("seucces_message", "削除に成功しました");
+		return "redirect:/categories";
 	}
 }
