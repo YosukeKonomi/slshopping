@@ -53,4 +53,13 @@ public class CategoryService {
 	public Category get(Long id) {
 		return categoryRepository.findById(id).get();
 	}
+	
+	/**
+	 * IDに紐づくカテゴリー情報削除処理
+	 * 
+	 * @param id カテゴリーID
+	 */
+	public void delete(Long id) {
+		categoryRepository.deleteById(id);
+	}
 }
